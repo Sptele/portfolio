@@ -1,16 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--nav-scale-to: 1.1;
+}
+
+@layer components {
+	.text-v-xl {
+		transform: scale(1, var(--nav-scale-to));
+		-webkit-transform: scale(1, var(--nav-scale-to)); /* Safari and Chrome */
+		-moz-transform: scale(1, var(--nav-scale-to)); /* Firefox */
+		-ms-transform: scale(1, var(--nav-scale-to)); /* IE 9+ */
+		-o-transform: scale(1, var(--nav-scale-to)); /* Opera */
+	}
+}
+
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
