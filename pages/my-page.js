@@ -4,7 +4,7 @@ import Layout from "../components/Layout.js";
 export default function MyPage() {
 	return (
 		<>
-			<Layout title="My Webpage" description="Portfolio for Gautam Khajuria" home>
+			<Layout title="My Webpage" description="Portfolio for Gautam Khajuria">
 				<h1>Dude this my page</h1>
 			</Layout>
 

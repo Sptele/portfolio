@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&family=Ubuntu:wght@700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 :root {
 	--nav-scale-to: 1.1;
@@ -16,13 +20,16 @@
 	}
 }
 
-
-html,
-body {
-	padding: 0;
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@layer base {
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-title;
+		@apply text-4xl;
+	}
+	
+	div, a, p, body {
+		@apply font-body;
+		@apply text-base;
+	}
 }
 
 a {

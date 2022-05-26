@@ -5,6 +5,10 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				title: ["Ubuntu", "serif"],
+				body: ["Secular One", "sans-serif"]
+			},
 			gridTemplateColumns: {
 				layout: "10wh 90wh"
 			}

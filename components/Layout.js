@@ -1,9 +1,21 @@
 import Head from "next/head";
+import Image from "next/image";
+import useRandom from "../hooks/use-random.js";
 
-function PageLayout({ navBorderColor }) {
-	let navbarLink = "hover:bg-black hover:text-white p-8";
+function Link({ href, children }) {
+	let navbarLink = "self-center hover:bg-black hover:text-white p-8 table h-[100%]";
 
-	let navStyles = `bg-gray-500 border-b-8 border-b-solid grid grid-cols-layout`;
+	return (
+		<a className={navbarLink} href={href}>
+			<h1 className="table-cell align-middle text-2xl">{children}</h1>
+		</a>
+	);
+}
+
+function NavigationBar({ home }) {
+	const navBorderColor = useRandom(1, 6, { integer: true, scale: 100 });
+
+	let navStyles = `bg-gray-500 border-b-8 border-b-solid grid grid-cols-2 align-center items-stretch flex`;
 
 	switch (navBorderColor) {
 		case 100:
@@ -39,24 +51,30 @@ function PageLayout({ navBorderColor }) {
 		<nav className={navStyles}>
 			<a
 				href={"/"}
-				className="col-span-1 col-start-1 row-start-1 row-span-1 bg-gray-400 py-8 text-center hover:bg-gray-600"
+				className={
+					"col-span-1 col-start-1 row-start-1 row-span-1 flex flex-row justify-evenly bg-gray-400 text-center hover:bg-gray-600 py-2"
+				}
 			>
-				<h1>Gautam Khajuria</h1>
+				{home ? (
+					<Image
+						src={"/me.jpg"}
+						alt="My Photo"
+						width={128}
+						height={128}
+						className="rounded-full"
+					/>
+				) : null}
+				<h1 className="self-center text-4xl">Gautam Khajuria</h1>
 			</a>
 			<div
 				className="col-span-1 col-start-2 row-start-1 row-span-1
-					flex flex-row justify-center gap-16"
+					flex flex-row justify-center gap-16 items-stretch"
 			>
-				<a className={navbarLink} href="/my-page">My Page</a>
-				<a className={navbarLink}>Link 2</a>
-				<a className={navbarLink} href="/api/guide">API</a>
+				<Link href="/my-page">My Page</Link>
+				<Link href="/api/">API</Link>
 			</div>
 		</nav>
 	);
-}
-
-function HomeLayout() {
-	return <PageLayout />;
 }
 
 function Layout({ title, description, home, children, navBorderColor }) {
@@ -64,9 +82,10 @@ function Layout({ title, description, home, children, navBorderColor }) {
 		<>
 			<Head>
 				<title>{title}</title>
+				<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/79765399?v=4" />
 				<meta title={title} description={description} />
 			</Head>
-			<PageLayout navBorderColor={navBorderColor} />
+			<NavigationBar home={home} navBorderColor={navBorderColor} />
 			{children}
 		</>
 	);

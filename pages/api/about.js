@@ -20,6 +20,7 @@ export default function handler(req, res) {
 			computer: "Some ASUS lol",
 
 		}
-	}
+	};
+
 	res.status(200).json(data);
 }
