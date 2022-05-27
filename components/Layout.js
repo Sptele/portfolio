@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import useRandom from "../hooks/use-random.js";
 
+import { ThemeContext } from "_app.js";
+import { useState, useContext } from 'react';
+
 function toNavStyle(borderColor) {
 	let navStyles = "";
 
@@ -51,6 +54,8 @@ function Link({ href, children }) {
 function NavigationBar({ home, isDark, setIsDark }) {
 	const navBorderColor = useRandom(1, 6, { integer: true, scale: 100 });
 
+	const [isDark, setIsDark] = useContext(ThemeContext);
+
 	return (
 		<nav className={`bg-gray-500 grid grid-cols-2 align-center items-stretch flex`}>
 			<a
@@ -83,7 +88,10 @@ function NavigationBar({ home, isDark, setIsDark }) {
 	);
 }
 
-function Layout({ title, description, home, children, navBorderColor, isDark, setIsDark }) {
+function Layout({ title, description, home, children, navBorderColor }) {
+
+	const [isDark, setIsDark] = useContext(ThemeContext);
+
 	return (
 		<>
 			<Head>
@@ -91,8 +99,10 @@ function Layout({ title, description, home, children, navBorderColor, isDark, se
 				<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/79765399?v=4" />
 				<meta title={title} description={description} />
 			</Head>
-			<NavigationBar home={home} navBorderColor={navBorderColor} isDark={isDark} setIsDark={setIsDark} />
-			{children}
+			<NavigationBar home={home} navBorderColor={navBorderColor} />
+			<div className={(isDark ? "dark" : "light")} >
+				{children}
+			</div>
 		</>
 	);
 }
