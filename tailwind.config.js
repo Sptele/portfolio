@@ -10,9 +10,10 @@ module.exports = {
 				body: ["Secular One", "sans-serif"]
 			},
 			gridTemplateColumns: {
-				layout: "10wh 90wh"
+				layout: "49wh 49wh 1wh"
 			}
 		},
 	},
+	darkMode: 'class',
 	plugins: [],
 };
