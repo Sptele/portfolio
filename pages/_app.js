@@ -1,11 +1,19 @@
-import '../styles/globals.css';
+import "../styles/globals.css";
 
-import { useState } from 'react';
+import { useState } from "react";
+
+import { createContext, useState } from "react";
+
+export const ThemeContext = createContext();
 
 function MyApp({ Component, pageProps }) {
 	const [isDark, setIsDark] = useState(false);
 
-  	return <Component {...pageProps} isDark={isDark} setIsDark={setIsDark} />;
+	return (
+		<ThemeContext.Provider value={[isDark, setIsDark]}>
+			<Component {...pageProps} />
+		</ThemeContext.Provider>
+	);
 }
 
 export default MyApp;

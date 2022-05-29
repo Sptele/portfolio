@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import useRandom from "../hooks/use-random.js";
 
+import { ThemeContext } from "_app.js";
+import { useState, useContext } from "react";
+
 function toNavStyle(borderColor) {
 	let navStyles = "";
 
@@ -39,7 +42,8 @@ function toNavStyle(borderColor) {
 }
 
 function Link({ href, children }) {
-	let navbarLink = "self-center hover:bg-black hover:text-white p-8 table h-[100%]";
+	let navbarLink =
+		"self-center hover:bg-black hover:text-white p-8 table h-[100%]";
 
 	return (
 		<a className={navbarLink} href={href}>
@@ -51,12 +55,17 @@ function Link({ href, children }) {
 function NavigationBar({ home, isDark, setIsDark }) {
 	const navBorderColor = useRandom(1, 6, { integer: true, scale: 100 });
 
+	const [isDark, setIsDark] = useContext(ThemeContext);
+
 	return (
-		<nav className={`bg-gray-500 grid grid-cols-2 align-center items-stretch flex`}>
+		<nav
+			className={`bg-gray-500 grid grid-cols-2 align-center items-stretch flex`}
+		>
 			<a
 				href={"/"}
 				className={
-					`col-span-1 col-start-1 row-start-1 row-span-1 flex flex-row justify-evenly bg-gray-500 text-center hover:bg-gray-600 py-2` + toNavStyle(navBorderColor)
+					`col-span-1 col-start-1 row-start-1 row-span-1 flex flex-row justify-evenly bg-gray-500 text-center hover:bg-gray-600 py-2` +
+					toNavStyle(navBorderColor)
 				}
 			>
 				{home ? (
@@ -77,24 +86,31 @@ function NavigationBar({ home, isDark, setIsDark }) {
 				<Link href="/my-page">My Page</Link>
 				<Link href="/api/">API</Link>
 			</div>
-			<button className="bg-slate-800 p-1 text-white float-right col-span-1 col-start-3 row-span-1 row-start-1" onClick={() => setIsDark(!isDark)} >{isDark ? "🌚" : "🌞"}</button>
-
+			<button
+				className="bg-slate-800 p-1 text-white float-right col-span-1 col-start-3 row-span-1 row-start-1"
+				onClick={() => setIsDark(!isDark)}
+			>
+				{isDark ? "🌚" : "🌞"}
+			</button>
 		</nav>
 	);
 }
 
-function Layout({ title, description, home, children, navBorderColor, isDark, setIsDark }) {
+function Layout({ title, description, home, children, navBorderColor }) {
+	const [isDark, setIsDark] = useContext(ThemeContext);
+
 	return (
 		<>
 			<Head>
 				<title>{title}</title>
-				<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/79765399?v=4" />
+				<link
+					rel="shortcut icon"
+					href="https://avatars.githubusercontent.com/u/79765399?v=4"
+				/>
 				<meta title={title} description={description} />
 			</Head>
-			<NavigationBar home={home} navBorderColor={navBorderColor} isDark={isDark} setIsDark={setIsDark} />
-			<div className={isDark ? "dark" : "light"}>
-				{children}
-			</div>
+			<NavigationBar home={home} navBorderColor={navBorderColor} />
+			<div className={isDark ? "dark" : "light"}>{children}</div>
 		</>
 	);
 }
