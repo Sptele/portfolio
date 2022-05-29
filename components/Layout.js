@@ -77,7 +77,7 @@ function NavigationBar({ home, isDark, setIsDark }) {
 				<Link href="/my-page">My Page</Link>
 				<Link href="/api/">API</Link>
 			</div>
-			<button className="bg-slate-800 p-1 text-white float-right col-span-1 col-start-3 row-span-1 row-start-1" onClick={() => setIsDark(!isDark)} >{!isDark ? "🌚" : "🌞"}</button>
+			<button className="bg-slate-800 p-1 text-white float-right col-span-1 col-start-3 row-span-1 row-start-1" onClick={() => setIsDark(!isDark)} >{isDark ? "🌚" : "🌞"}</button>
 
 		</nav>
 	);
@@ -92,7 +92,9 @@ function Layout({ title, description, home, children, navBorderColor, isDark, se
 				<meta title={title} description={description} />
 			</Head>
 			<NavigationBar home={home} navBorderColor={navBorderColor} isDark={isDark} setIsDark={setIsDark} />
-			{children}
+			<div className={isDark ? "dark" : "light"}>
+				{children}
+			</div>
 		</>
 	);
 }
