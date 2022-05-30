@@ -5,15 +5,28 @@ import Layout from "../components/Layout.js";
 
 // wow its a next app
 export default function Home() {
-
 	return (
 		<Layout
 			home
 			title="Gautam Khajuria"
 			description="Portfolio for Gautam Khajuria"
 		>
-			<div className="p-2 bg-white dark:bg-slate-700 min-h-screen">
-				<div className=""></div>
+			<div className="bg-white dark:bg-slate-700 min-h-full flex flex-col">
+				<div className="ml-auto mr-auto mt-4">
+					<Image
+						src="/main-banner.jpg"
+						width={816}
+						height={612}
+						className="rounded-md"
+					/>
+				</div>
+				<div className="text-center dark:text-white">
+					<h1>Gautam Khajuria</h1>
+					<p>
+						I'm a high school freshman that loves everything related
+						to CS!
+					</p>
+				</div>
 			</div>
 		</Layout>
 	);

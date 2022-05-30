@@ -101,6 +101,21 @@ function NavigationBar({ home, isDark, setIsDark }) {
 	);
 }
 
+function Footer({ title, isDark }) {
+	const copyRight = (
+		<span>Copyright &copy; 2022 Gautam Khajuria. All Rights Reserved.</span>
+	);
+
+	return (
+		<div className={isDark ? "dark" : "light"}>
+			<div className={"bg-gray-700 dark:bg-slate-600 p-2 "}>
+				<h2>{title}</h2>
+				{copyRight}
+			</div>
+		</div>
+	);
+}
+
 function Layout({ title, description, home, children, navBorderColor }) {
 	const [isDark, setIsDark] = useContext(ThemeContext);
 
@@ -123,6 +138,7 @@ function Layout({ title, description, home, children, navBorderColor }) {
 				setIsDark={setIsDark}
 			/>
 			<div className={isDark ? "dark" : "light"}>{children}</div>
+			<Footer title={title} isDark={isDark} />
 		</>
 	);
 }
