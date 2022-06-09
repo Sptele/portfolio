@@ -119,8 +119,6 @@ function Footer({ title, isDark }) {
 function Layout({ title, description, home, children, navBorderColor }) {
 	const [isDark, setIsDark] = useContext(ThemeContext);
 
-	console.log("Layout.js: " + (isDark ? "dark mode" : "light mode"));
-
 	return (
 		<>
 			<Head>

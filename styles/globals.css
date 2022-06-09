@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Secular+One&family=Ubuntu:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&family=Ubuntu:wght@700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 :root {
 	--nav-scale-to: 1.1;
@@ -12,37 +10,84 @@
 
 @layer components {
 	.text-v-xl {
-		transform: scale(1, var(--nav-scale-to));
-		-webkit-transform: scale(1, var(--nav-scale-to)); /* Safari and Chrome */
-		-moz-transform: scale(1, var(--nav-scale-to)); /* Firefox */
-		-ms-transform: scale(1, var(--nav-scale-to)); /* IE 9+ */
-		-o-transform: scale(1, var(--nav-scale-to)); /* Opera */
+		@apply scale-x-[1];
+		@apply scale-y-[var(--nav-scale-to)];
+	}
+	
+	/* The following code for the tooltip styling is not mine, but from W3Schools:
+	   https://www.w3schools.com/css/css_tooltip.asp */
+
+	/* Tooltip container */
+	.tooltip {
+		@apply relative;
+		@apply inline-block;
+	}
+
+	/* Tooltip text */
+	.tooltip .tooltip-text {
+		@apply invisible;
+		@apply text-center;
+		@apply p-[5px];
+		@apply rounded-[6px];
+		@apply text-xs;
+
+		/* Position the tooltip text - see examples below! */
+		@apply absolute;
+		@apply z-[1];
+	}
+
+	/* Show the tooltip text when you mouse over the tooltip container */
+	.tooltip:hover .tooltip-text {
+		@apply visible;
 	}
 }
 
 @layer base {
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		@apply font-title;
 	}
-	
-	h1 { @apply text-4xl }
-	h2 { @apply text-3xl }
-	h3 { @apply text-2xl }
-	h4 { @apply text-xl }
-	h5 { @apply text-lg }
-	h6 { @apply text-lg}
-	
-	div, a, p, body {
+
+	h1 {
+		@apply text-4xl;
+	}
+	h2 {
+		@apply text-3xl;
+	}
+	h3 {
+		@apply text-2xl;
+	}
+	h4 {
+		@apply text-xl;
+	}
+	h5 {
+		@apply text-lg;
+	}
+	h6 {
+		@apply text-lg;
+	}
+
+	div,
+	a,
+	p,
+	body {
 		@apply font-body;
 		@apply text-base;
 	}
-}
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
+	a {
+		font-size: inherit;
+		line-height: inherit;
 
-* {
-	box-sizing: border-box;
+		@apply text-inherit;
+		@apply no-underline;
+	}
+
+	* {
+		@apply box-border;
+	}
 }

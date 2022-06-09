@@ -9,10 +9,11 @@ export default function handler(req, res) {
 		occupation: "Student",
 		programmingLangs: ["Java", "JavaScript", "C++", "C#", "HTML", "CSS", "Python"],
 		preferences: {
-			IDES: {
+			ides: {
 				Java: "IntelliJ IDEA",
 				CPP: "Visual Studio Code",
 				CSharp: "Visual Studio",
+				Rust: "IntelliJ IDEA",
 				JavaScript: "Visual Studio Code",
 				HTMLCSS: "Visual Studio Code",
 				Python: "Pystorm"
@@ -20,7 +21,7 @@ export default function handler(req, res) {
 			computer: "Some ASUS lol",
 
 		}
-	};
+	};	
 
 	res.status(200).json(data);
 }
